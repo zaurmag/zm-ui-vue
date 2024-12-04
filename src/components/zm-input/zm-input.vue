@@ -1,5 +1,15 @@
 <template>
-  <div class="zm-input" :style="{ width }">
+  <div
+    :class="[
+      'zm-input',
+      {
+        'zm-input--lg': size === 'lg',
+        'zm-input--md': size === 'md',
+        'is-disabled': isDisabled,
+      },
+    ]"
+    :style="{ width }"
+  >
     <label v-if="label" :for="id ?? generatedId" class="zm-input__label">
       {{ label }}
     </label>
@@ -32,6 +42,8 @@ const {
   type?: string
   label?: string
   width?: string
+  isDisabled?: boolean
+  size?: 'md' | 'lg'
   placeholder?: string
   modelValue: string | number
 }>()
@@ -53,20 +65,54 @@ const value = computed({
 
 <style scoped lang="scss">
 .zm-input {
+  $self: &;
+
   display: grid;
-  grid-gap: 0.25rem;
+  grid-gap: 0.75rem;
+
+  &.is-disabled {
+    pointer-events: none;
+  }
 
   &__label {
     color: $dark;
     font-size: 1rem;
+    font-weight: 500;
+
+    .is-disabled & {
+      color: lighten($dark, 50%);
+    }
   }
 
   &__field {
-    border: 1px solid $gray;
+    border: 2px solid $lightGray;
     border-radius: 0.25rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.75rem;
     height: 1.5rem;
     width: 100%;
+    outline: none;
+    transition: border-color 0.3s ease;
+
+    #{$self}--md & {
+      height: 1rem;
+    }
+
+    #{$self}--lg & {
+      height: 2rem;
+    }
+
+    &:focus {
+      border-color: $blue;
+    }
+
+    &::placeholder {
+      font-size: 1rem;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .is-disabled & {
+      color: lighten($lightGray, 50%);
+    }
   }
 }
 </style>

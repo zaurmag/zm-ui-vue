@@ -18,6 +18,7 @@ const changeInput = value => {
       label="Инпут с типом text"
       placeholder="Альтернативный текст"
       width="200px"
+      is-disabled
       @change="changeInput"
     />
   </main>
