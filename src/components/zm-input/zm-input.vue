@@ -15,7 +15,7 @@
     </label>
 
     <input
-      v-model="value"
+      v-model="modelValue"
       class="zm-input__field"
       :id="id ?? generatedId"
       :type="type"
@@ -25,19 +25,13 @@
 </template>
 
 <script setup lang="ts">
-import { useId, computed } from 'vue'
+import { useId } from 'vue'
 
-// Emits && props
 const $emit = defineEmits<{
-  (e: 'update:modelValue', value: string | number): void
-  (e: 'change', value: string | number): void
+  change: [value: string | number]
 }>()
 
-const {
-  type = 'text',
-  width = '100%',
-  modelValue = '',
-} = defineProps<{
+const { type = 'text', width = '100%' } = defineProps<{
   id?: string
   type?: string
   label?: string
@@ -45,20 +39,18 @@ const {
   isDisabled?: boolean
   size?: 'md' | 'lg'
   placeholder?: string
-  modelValue: string | number
 }>()
 
 // Vars
 const generatedId = useId()
 
 // Refs
-const value = computed({
-  get() {
-    return modelValue
-  },
-  set(val) {
-    $emit('update:modelValue', val)
-    $emit('change', val)
+const modelValue = defineModel<string | number>({
+  required: true,
+  set(value) {
+    $emit('change', value)
+
+    return value
   },
 })
 </script>
