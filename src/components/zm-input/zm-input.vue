@@ -60,7 +60,7 @@ const modelValue = defineModel<string | number>({
   $self: &;
 
   display: grid;
-  grid-gap: 0.75rem;
+  grid-gap: 0.5rem;
 
   &.is-disabled {
     pointer-events: none;
@@ -68,20 +68,20 @@ const modelValue = defineModel<string | number>({
 
   &__label {
     color: $dark;
-    font-size: 1rem;
+    font-size: fz(14);
     font-weight: 500;
+    display: inline-block;
 
     .is-disabled & {
-      color: lighten($dark, 50%);
+      color: color.adjust($dark, $lightness: 50%);
     }
   }
 
   &__field {
-    border: 2px solid $lightGray;
+    border: 1px solid $lightGray;
     border-radius: 0.25rem;
     padding: 0.5rem 0.75rem;
-    height: 1.5rem;
-    width: 100%;
+    height: 2.5rem;
     outline: none;
     transition: border-color 0.3s ease;
 
@@ -98,12 +98,12 @@ const modelValue = defineModel<string | number>({
     }
 
     &::placeholder {
-      font-size: 1rem;
-      font-family: 'Raleway', sans-serif;
+      font-size: fz(14);
+      font-family: $fontFamily;
     }
 
     .is-disabled & {
-      color: lighten($lightGray, 50%);
+      color: color.adjust($lightGray, $lightness: 50%);
     }
   }
 }

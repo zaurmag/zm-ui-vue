@@ -21,6 +21,8 @@ export default defineConfig({
         api: 'modern-compiler',
         additionalData: `
           @use '/src/assets/variables' as *;
+          @use '/src/assets/functions' as *;
+          @use 'sass:color' as color;
         `,
       },
     },
