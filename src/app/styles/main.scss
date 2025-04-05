@@ -1,0 +1,17 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  display: block;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font: 1rem $fontFamily;
+  color: $dark;
+  background-color: $white;
+}
