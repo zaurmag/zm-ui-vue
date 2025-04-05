@@ -54,10 +54,3 @@ export const Small: Story = {
     size: 'small',
   },
 }
-
-export const ZmInput: Story = {
-  args: {
-    primary: false,
-    label: 'Button',
-  },
-}
