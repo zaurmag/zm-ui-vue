@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/vue3'
+import { StyleDecorator } from '../src/app/config/storybook/style-decorator'
 
 const preview: Preview = {
   parameters: {
@@ -9,6 +10,7 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [StyleDecorator],
 }
 
 export default preview
