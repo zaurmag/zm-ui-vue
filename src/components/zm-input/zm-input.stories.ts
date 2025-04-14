@@ -6,7 +6,7 @@ const meta = {
   component: ZmInput,
   tags: ['autodocs'],
   argTypes: {
-    size: { control: 'select', options: ['md', 'lg'] },
+    size: { control: 'select', options: ['sm', 'lg'] },
     placeholder: { control: 'text' },
   },
 } satisfies Meta<typeof ZmInput>
@@ -19,17 +19,44 @@ export const Default: Story = {
   args: {
     modelValue: '',
     type: 'text',
-    label: 'Текстовый инпут',
-    placeholder: 'Проверка',
+    label: 'Стандартный размер',
+    placeholder: 'Default',
+  },
+}
+
+export const Small: Story = {
+  args: {
+    modelValue: '',
+    type: 'text',
+    label: 'Маленький размер',
+    placeholder: 'sm',
+    size: 'sm'
+  },
+}
+
+export const Large: Story = {
+  args: {
+    modelValue: '',
+    type: 'text',
+    label: 'Большой размер',
+    placeholder: 'lg',
+    size: 'lg'
   },
 }
 
 export const Disabled: Story = {
   args: {
-    modelValue: '',
+    modelValue: 'Поле отключено',
     type: 'text',
-    placeholder: 'Проверка',
     label: 'Текстовый инпут',
     isDisabled: true,
+  },
+}
+
+export const WithoutLabel: Story = {
+  args: {
+    modelValue: '',
+    type: 'text',
+    placeholder: 'Без заголовка'
   },
 }

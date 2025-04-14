@@ -17,7 +17,8 @@ const changeInput = value => {
       v-model="test"
       label="Инпут с типом text"
       placeholder="Альтернативный текст"
-      width="200px"
+      width="300px"
+      size="md"
       @change="changeInput"
     />
   </main>

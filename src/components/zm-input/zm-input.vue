@@ -2,11 +2,8 @@
   <div
     :class="[
       'zm-input',
-      {
-        'zm-input--lg': size === 'lg',
-        'zm-input--md': size === 'md',
-        'is-disabled': isDisabled,
-      },
+      size ? `zm-input--${size}` : '',
+      { 'is-disabled': isDisabled },
     ]"
     :style="{ width }"
   >
@@ -20,6 +17,7 @@
       :id="id ?? generatedId"
       :type="type"
       :placeholder="placeholder"
+      :disabled="isDisabled"
     />
   </div>
 </template>
@@ -27,8 +25,11 @@
 <script setup lang="ts">
 import { useId } from 'vue'
 
+type Model = string | number
+
+// Emits and props
 const $emit = defineEmits<{
-  change: [value: string | number]
+  change: [value: Model]
 }>()
 
 const { type = 'text', width = '100%' } = defineProps<{
@@ -37,7 +38,7 @@ const { type = 'text', width = '100%' } = defineProps<{
   label?: string
   width?: string
   isDisabled?: boolean
-  size?: 'md' | 'lg'
+  size?: 'sm' | 'lg'
   placeholder?: string
 }>()
 
@@ -45,7 +46,7 @@ const { type = 'text', width = '100%' } = defineProps<{
 const generatedId = useId()
 
 // Refs
-const modelValue = defineModel<string | number>({
+const modelValue = defineModel<Model>({
   required: true,
   set(value) {
     $emit('change', value)
@@ -62,48 +63,63 @@ const modelValue = defineModel<string | number>({
   display: grid;
   grid-gap: 0.5rem;
 
-  &.is-disabled {
-    pointer-events: none;
-  }
-
   &__label {
-    color: $dark;
-    font-size: fz(14);
+    color: $gray-900;
+    font-size: $font-size-base;
     font-weight: 500;
     display: inline-block;
-
-    .is-disabled & {
-      color: color.adjust($dark, $lightness: 50%);
-    }
   }
 
   &__field {
-    border: 1px solid $lightGray;
+    border: 1px solid $input-border-color;
     border-radius: 0.25rem;
     padding: 0.5rem 0.75rem;
-    height: 2.5rem;
     outline: none;
+    font-size: $font-size-base;
+    font-weight: 400;
     transition: border-color 0.3s ease;
-
-    #{$self}--md & {
-      height: 1rem;
-    }
-
-    #{$self}--lg & {
-      height: 2rem;
-    }
 
     &:focus {
       border-color: $blue;
     }
 
     &::placeholder {
-      font-size: fz(14);
-      font-family: $fontFamily;
+      font-size: $font-size-base;
+      font-family: $font-family;
     }
+  }
 
-    .is-disabled & {
-      color: color.adjust($lightGray, $lightness: 50%);
+  // Disabled
+  &.is-disabled {
+    #{$self}__field {
+      opacity: 1;
+      color: $input-disabled-color;
+      background-color: $gray-200;
+    }
+  }
+
+  // Sizes
+  &--sm {
+    #{$self}__field {
+      padding: $input-padding-y-sm $input-padding-x-sm;
+      font-size: $font-size-sm;
+      min-height: $input-height-sm;
+
+      &::placeholder {
+        font-size: $font-size-sm;
+      }
+    }
+  }
+
+  &--lg {
+    #{$self}__field {
+      padding: $input-padding-y-lg $input-padding-x-lg;
+      font-size: $font-size-lg;
+      min-height: $input-height-lg;
+
+      &::placeholder {
+        font-size: $font-size-lg;
+      }
     }
   }
 }

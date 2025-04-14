@@ -20,9 +20,9 @@ export default defineConfig({
       scss: {
         api: 'modern-compiler',
         additionalData: `
-          @use '/src/app/styles/variables' as *;
           @use '/src/app/styles/functions' as *;
           @use '/src/app/styles/font' as *;
+          @use '/src/app/styles/variables' as *;
           @use 'sass:color' as color;
         `,
       },
