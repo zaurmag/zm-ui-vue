@@ -3,7 +3,10 @@
     :class="[
       'zm-input',
       size ? `zm-input--${size}` : '',
-      { 'is-disabled': isDisabled },
+      {
+        'is-disabled': isDisabled,
+        'zm-input--password': isPassword
+      },
     ]"
     :style="{ width }"
   >
@@ -15,17 +18,29 @@
       v-model="modelValue"
       class="zm-input__field"
       :id="id ?? generatedId"
-      :type="type"
+      :type="inputType"
       :placeholder="placeholder"
       :disabled="isDisabled"
     />
+
+    <button
+      v-if="isPassword"
+      type="button"
+      class="zm-input__password-btn"
+      @click="togglePassword"
+    >
+      <svg-icon class="zm-input__password-btn-icon" :name="passwordBtnIcon" />
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useId } from 'vue'
+import { ref, useId, defineAsyncComponent, computed } from 'vue'
 
 type Model = string | number
+
+// Components
+const svgIcon = defineAsyncComponent(() => import('@/shared/ui/svg-icon.vue'))
 
 // Emits and props
 const $emit = defineEmits<{
@@ -34,7 +49,7 @@ const $emit = defineEmits<{
 
 const { type = 'text', width = '100%' } = defineProps<{
   id?: string
-  type?: string
+  type?: 'text' | 'password' | 'email' | 'tel' | 'number'
   label?: string
   width?: string
   isDisabled?: boolean
@@ -43,9 +58,12 @@ const { type = 'text', width = '100%' } = defineProps<{
 }>()
 
 // Vars
-const generatedId = useId()
+const generatedId: string = useId()
 
 // Refs
+const inputType = ref<string>(type)
+const isDisplayPassword = ref<boolean>(false)
+const passwordBtnIcon = ref<string>('eye')
 const modelValue = defineModel<Model>({
   required: true,
   set(value) {
@@ -54,6 +72,21 @@ const modelValue = defineModel<Model>({
     return value
   },
 })
+
+const isPassword = computed<boolean>(() => type === 'password')
+
+// Methods
+const togglePassword = () => {
+  isDisplayPassword.value = !isDisplayPassword.value
+
+  if (isDisplayPassword.value) {
+    inputType.value = 'text'
+    passwordBtnIcon.value = 'eye-slash'
+  } else {
+    inputType.value = 'password'
+    passwordBtnIcon.value = 'eye'
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -73,7 +106,7 @@ const modelValue = defineModel<Model>({
   &__field {
     border: 1px solid $input-border-color;
     border-radius: 0.25rem;
-    padding: 0.5rem 0.75rem;
+    padding: $input-padding-y $input-padding-x;
     outline: none;
     font-size: $font-size-base;
     font-weight: 400;
@@ -98,27 +131,71 @@ const modelValue = defineModel<Model>({
     }
   }
 
+  // Password button
+  &--password {
+    position: relative;
+  }
+
+  &__password-btn {
+    position: absolute;
+    right: $input-padding-x;
+    bottom: 0;
+    transform: translateY(calc(-1.5em / 4));
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font-size-base;
+    height: 1.5em;
+    width: 1.5em;
+
+    &-icon {
+      color: $input-password-btn-icon-color;
+    }
+  }
+
   // Sizes
   &--sm {
-    #{$self}__field {
-      padding: $input-padding-y-sm $input-padding-x-sm;
-      font-size: $font-size-sm;
-      min-height: $input-height-sm;
-
-      &::placeholder {
+    #{$self} {
+      &__field {
+        padding: $input-padding-y-sm $input-padding-x-sm;
         font-size: $font-size-sm;
+        min-height: $input-height-sm;
+
+        // Placeholder
+        &::placeholder {
+          font-size: $font-size-sm;
+        }
+      }
+
+      // Password button
+      &__password-btn {
+        font-size: $font-size-sm;
+        right: $input-padding-x-sm;
       }
     }
   }
 
   &--lg {
-    #{$self}__field {
-      padding: $input-padding-y-lg $input-padding-x-lg;
-      font-size: $font-size-lg;
-      min-height: $input-height-lg;
-
-      &::placeholder {
+    #{$self} {
+      &__field {
+        padding: $input-padding-y-lg $input-padding-x-lg;
         font-size: $font-size-lg;
+        min-height: $input-height-lg;
+
+        &::placeholder {
+          font-size: $font-size-lg;
+        }
+      }
+
+      // Password button
+      &__password-btn {
+        font-size: $font-size-lg;
+        right: $input-padding-x-lg;
+        transform: translateY(calc(-1.5em / 4 - 2px));
       }
     }
   }

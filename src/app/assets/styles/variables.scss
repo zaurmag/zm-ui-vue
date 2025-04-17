@@ -44,6 +44,8 @@ $input-border-width:   $border-width;
 $input-border-color:   $gray-400 !default;
 $input-disabled-color: null !default;
 
+$input-padding-y: 0.5rem !default;
+$input-padding-x: 0.75rem !default;
 $input-padding-x-lg:   1rem !default;
 $input-padding-y-lg:  .5rem !default;
 $input-padding-x-sm:  .5rem !default;
@@ -51,3 +53,5 @@ $input-padding-y-sm:  .25rem !default;
 
 $input-height-sm: calc($line-height-base * 1em + .5rem + 2px);
 $input-height-lg: calc($line-height-base * 1em + 1rem + 2px);
+
+$input-password-btn-icon-color: $gray-600 !default;

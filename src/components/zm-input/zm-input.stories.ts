@@ -60,3 +60,13 @@ export const WithoutLabel: Story = {
     placeholder: 'Без заголовка'
   },
 }
+
+export const Password: Story = {
+  args: {
+    modelValue: '',
+    label: 'Поле пароля',
+    type: 'password',
+    placeholder: 'Введите пароль',
+    // size: 'lg'
+  },
+}

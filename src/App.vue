@@ -18,7 +18,7 @@ const changeInput = value => {
       label="Инпут с типом text"
       placeholder="Альтернативный текст"
       width="300px"
-      size="md"
+      type="password"
       @change="changeInput"
     />
   </main>
