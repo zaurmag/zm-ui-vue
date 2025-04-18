@@ -160,6 +160,10 @@ const togglePassword = () => {
   // Sizes
   &--sm {
     #{$self} {
+      &__label {
+        font-size: $font-size-sm;
+      }
+
       &__field {
         padding: $input-padding-y-sm $input-padding-x-sm;
         font-size: $font-size-sm;
@@ -181,6 +185,10 @@ const togglePassword = () => {
 
   &--lg {
     #{$self} {
+      &__label {
+        font-size: $font-size-lg;
+      }
+
       &__field {
         padding: $input-padding-y-lg $input-padding-x-lg;
         font-size: $font-size-lg;
