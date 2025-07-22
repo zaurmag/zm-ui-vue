@@ -12,10 +12,12 @@ export default defineConfig({
     createSvgIconsPlugin({
       // https://github.com/vbenjs/vite-plugin-svg-icons
       // Specify the icon folder to be cached
-      iconDirs: [fileURLToPath(new URL('src/app/assets/icons', import.meta.url))],
+      iconDirs: [
+        fileURLToPath(new URL('src/app/assets/icons', import.meta.url)),
+      ],
       // Specify symbolId format
-      symbolId: 'icon-[dir]-[name]'
-    })
+      symbolId: 'icon-[dir]-[name]',
+    }),
   ],
   resolve: {
     alias: {
@@ -30,9 +32,9 @@ export default defineConfig({
       scss: {
         api: 'modern-compiler',
         additionalData: `
+          @use '/src/app/assets/styles/variables' as *;
           @use '/src/app/assets/styles/functions' as *;
           @use '/src/app/assets/styles/font' as *;
-          @use '/src/app/assets/styles/variables' as *;
           @use 'sass:color' as color;
         `,
       },
