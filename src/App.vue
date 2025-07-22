@@ -1,53 +1,34 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { ref } from 'vue'
+import zmInput from './components/zm-input/zm-input.vue'
+
+const test = ref('')
+
+const changeInput = value => {
+  console.log(value)
+}
 </script>
 
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="./assets/logo.svg"
-      width="125"
-      height="125"
+  <main class="main-container">
+    <h1>ZM Input</h1>
+
+    <zm-input
+      v-model="test"
+      label="Инпут с типом text"
+      placeholder="Альтернативный текст"
+      width="300px"
+      type="password"
+      @change="changeInput"
     />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
   </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+<style lang="scss" scoped>
+.main-container {
+  padding: 0 1rem;
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 100%;
 }
 </style>
