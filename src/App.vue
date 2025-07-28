@@ -3,15 +3,11 @@ import { ref } from 'vue'
 import zmInput from './components/zm-input/zm-input.vue'
 
 const test = ref('')
-
-const changeInput = value => {
-  console.log(value)
-}
 </script>
 
 <template>
   <main class="main-container">
-    <h1>ZM Input</h1>
+    <h1>ZM-UI - библиотека UI-компонентов</h1>
 
     <zm-input
       v-model="test"
@@ -19,7 +15,6 @@ const changeInput = value => {
       placeholder="Альтернативный текст"
       width="300px"
       type="password"
-      @change="changeInput"
     />
   </main>
 </template>
