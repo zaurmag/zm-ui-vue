@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ZMThemes } from '@/shared/types'
 
-interface IProps {
+export interface IProps {
   size?: 'sm' | 'lg'
   theme?: ZMThemes
 }

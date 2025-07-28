@@ -1,3 +1,3 @@
-import { THEMES } from '@/shared/config/consts'
+import { THEMES } from '../config/consts'
 
 export type ZMThemes = (typeof THEMES)[number]

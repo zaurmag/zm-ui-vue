@@ -43,7 +43,7 @@ type BtnIcon = 'eye' | 'eye-slash'
 type Type = 'text' | 'password' | 'email' | 'tel' | 'number'
 type Size = 'sm' | 'lg'
 
-interface IProps {
+export interface IProps {
   id?: string
   type?: Type | undefined
   label?: string | undefined
