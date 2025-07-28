@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import type { ZMThemes } from 'src/shared/types'
+import type { ZMThemes } from '@/shared/types'
 
-defineProps<{
+interface IProps {
   size?: 'sm' | 'lg'
   theme?: ZMThemes
-}>()
+}
+
+defineProps<IProps>()
 </script>
 
 <template>

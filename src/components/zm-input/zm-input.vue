@@ -37,33 +37,41 @@
 <script setup lang="ts">
 import { ref, useId, defineAsyncComponent, computed } from 'vue'
 
+// Types
 type Model = string | number
+type BtnIcon = 'eye' | 'eye-slash'
+type Type = 'text' | 'password' | 'email' | 'tel' | 'number'
+type Size = 'sm' | 'lg'
+
+interface IProps {
+  id?: string
+  type?: Type | undefined
+  label?: string | undefined
+  width?: string | undefined
+  isDisabled?: boolean | undefined
+  size?: Size | undefined
+  placeholder?: string | undefined
+}
+
+type Emits = {
+  change: [value: Model]
+}
 
 // Components
 const svgIcon = defineAsyncComponent(() => import('@/shared/ui/svg-icon.vue'))
 
 // Emits and props
-const $emit = defineEmits<{
-  change: [value: Model]
-}>()
-
-const { type = 'text', width = '100%' } = defineProps<{
-  id?: string
-  type?: 'text' | 'password' | 'email' | 'tel' | 'number'
-  label?: string
-  width?: string
-  isDisabled?: boolean
-  size?: 'sm' | 'lg'
-  placeholder?: string
-}>()
+const $emit = defineEmits<Emits>()
+const { type = 'text', width = '100%' } = defineProps<IProps>()
 
 // Vars
 const generatedId: string = useId()
 
 // Refs
-const inputType = ref<string>(type)
-const isDisplayPassword = ref<boolean>(false)
-const passwordBtnIcon = ref<string>('eye')
+const inputType = ref<Type>(type)
+const isDisplayPassword = ref(false)
+const passwordBtnIcon = ref<BtnIcon>('eye')
+
 const modelValue = defineModel<Model>({
   required: true,
   set(value) {

@@ -8,4 +8,4 @@ export const THEMES = [
   'light',
   'dark',
   'link',
-]
+] as const
