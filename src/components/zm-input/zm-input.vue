@@ -29,17 +29,18 @@
       class="zm-input__password-btn"
       @click="togglePassword"
     >
-      <svg-icon class="zm-input__password-btn-icon" :name="passwordBtnIcon" />
+      <img :src="passwordBtnIcon" alt="Eye">
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, useId, defineAsyncComponent, computed } from 'vue'
+import Eye from '@/app/assets/icons/eye.svg'
+import EyeSlash from '@/app/assets/icons/eye-slash.svg'
+import { ref, useId, computed } from 'vue'
 
 // Types
 type Model = string | number
-type BtnIcon = 'eye' | 'eye-slash'
 type Type = 'text' | 'password' | 'email' | 'tel' | 'number'
 type Size = 'sm' | 'lg'
 
@@ -57,9 +58,6 @@ type Emits = {
   change: [value: Model]
 }
 
-// Components
-const svgIcon = defineAsyncComponent(() => import('@/shared/ui/svg-icon.vue'))
-
 // Emits and props
 const $emit = defineEmits<Emits>()
 const { type = 'text', width = '100%' } = defineProps<IProps>()
@@ -70,7 +68,7 @@ const generatedId: string = useId()
 // Refs
 const inputType = ref<Type>(type)
 const isDisplayPassword = ref(false)
-const passwordBtnIcon = ref<BtnIcon>('eye')
+const passwordBtnIcon = ref(Eye)
 
 const modelValue = defineModel<Model>({
   required: true,
@@ -89,10 +87,10 @@ const togglePassword = () => {
 
   if (isDisplayPassword.value) {
     inputType.value = 'text'
-    passwordBtnIcon.value = 'eye-slash'
+    passwordBtnIcon.value = EyeSlash
   } else {
     inputType.value = 'password'
-    passwordBtnIcon.value = 'eye'
+    passwordBtnIcon.value = Eye
   }
 }
 </script>

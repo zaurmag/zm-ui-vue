@@ -47,15 +47,9 @@ defineProps<IProps>()
     &--#{$color} {
       background-color: $value;
       border-color: $value;
-      color: color-contrast($value);
+      color: $white;
+      //color: color-contrast($value);
     }
-  }
-
-  &--link {
-    background-color: transparent;
-    border: none;
-    text-decoration: underline;
-    color: $btn-link-color;
   }
 
   // Sizes
@@ -75,6 +69,14 @@ defineProps<IProps>()
       $btn-font-size-sm,
       $btn-border-radius-sm
     );
+  }
+
+  &--link {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: $btn-link-color;
+    padding: 0;
   }
 }
 </style>
