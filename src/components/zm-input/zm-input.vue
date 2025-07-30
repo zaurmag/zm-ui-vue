@@ -4,8 +4,9 @@
       'zm-input',
       size ? `zm-input--${size}` : '',
       {
-        'is-disabled': isDisabled,
-        'zm-input--password': isPassword
+        'zm-input--disabled': isDisabled,
+        'zm-input--password': isPassword,
+        'zm-input--error': error
       },
     ]"
     :style="{ width }"
@@ -21,6 +22,7 @@
       :type="inputType"
       :placeholder="placeholder"
       :disabled="isDisabled"
+      @blur="$emit('blur', $event)"
     />
 
     <button
@@ -31,6 +33,8 @@
     >
       <img :src="passwordBtnIcon" alt="Eye">
     </button>
+
+    <span v-if="error" class="zm-input__error-message">{{ error }}</span>
   </div>
 </template>
 
@@ -52,10 +56,12 @@ export interface IProps {
   isDisabled?: boolean | undefined
   size?: Size | undefined
   placeholder?: string | undefined
+  error?: string | undefined
 }
 
 type Emits = {
   change: [value: Model]
+  blur: [event: Event]
 }
 
 // Emits and props
@@ -100,7 +106,7 @@ const togglePassword = () => {
   $self: &;
 
   display: grid;
-  grid-gap: 0.5rem;
+  grid-gap: 0.25rem;
 
   &__label {
     color: $gray-900;
@@ -128,8 +134,20 @@ const togglePassword = () => {
     }
   }
 
+  // Error
+  &--error {
+    #{$self}__field {
+      border-color: $red;
+    }
+  }
+
+  &__error-message {
+    color: $red;
+    font-size: $font-size-sm;
+  }
+
   // Disabled
-  &.is-disabled {
+  &--disabled {
     #{$self}__field {
       opacity: 1;
       color: $input-disabled-color;
@@ -145,8 +163,8 @@ const togglePassword = () => {
   &__password-btn {
     position: absolute;
     right: $input-padding-x;
-    bottom: 0;
-    transform: translateY(calc(-1.5em / 4));
+    top: 0;
+    transform: translateY(calc(2.2em - 2px));
     background-color: transparent;
     cursor: pointer;
     border: none;
@@ -209,7 +227,7 @@ const togglePassword = () => {
       &__password-btn {
         font-size: $font-size-lg;
         right: $input-padding-x-lg;
-        transform: translateY(calc(-1.5em / 4 - 2px));
+        //transform: translateY(calc(2.4em - 2px));
       }
     }
   }

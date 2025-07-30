@@ -8,6 +8,9 @@ const meta = {
   argTypes: {
     size: { control: 'select', options: ['sm', 'lg'] },
     placeholder: { control: 'text' },
+    error: { control: 'text' },
+    isDisabled: { control: 'boolean' },
+    width: { control: 'text' },
   },
 } satisfies Meta<typeof ZmInput>
 
@@ -68,5 +71,14 @@ export const Password: Story = {
     type: 'password',
     placeholder: 'Введите пароль',
     // size: 'lg'
+  },
+}
+
+export const Error: Story = {
+  args: {
+    modelValue: '',
+    label: 'Поле с ошибкой',
+    type: 'text',
+    error: 'Поле не должно быть пустым'
   },
 }
