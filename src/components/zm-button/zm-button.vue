@@ -4,6 +4,7 @@ import type { ZMThemes } from '@/shared/types'
 export interface IProps {
   size?: 'sm' | 'lg'
   theme?: ZMThemes
+  isAnimation?: boolean | undefined
 }
 
 defineProps<IProps>()
@@ -15,6 +16,7 @@ defineProps<IProps>()
       'zm-button',
       size ? `zm-button--${size}` : '',
       theme ? `zm-button--${theme}` : '',
+      isAnimation ? 'zm-button--animation' : ''
     ]"
   >
     <slot />
@@ -50,6 +52,22 @@ defineProps<IProps>()
       color: $white;
       //color: color-contrast($value);
     }
+
+    // Animation
+    &--animation {
+      animation: progress 0.5s linear infinite;
+      background-size: 25px 25px;
+      background-image: linear-gradient(
+          45deg,
+          rgba($value, 0.25) 25%,
+          transparent 25%,
+          transparent 50%,
+          rgba($value, 0.25) 50%,
+          rgba($value, 0.25) 75%,
+          transparent 75%,
+          transparent);
+      color: $white;
+    }
   }
 
   // Sizes
@@ -77,6 +95,16 @@ defineProps<IProps>()
     text-decoration: underline;
     color: $btn-link-color;
     padding: 0;
+  }
+}
+
+@keyframes progress {
+  from {
+    background-position: 0 0
+  }
+
+  to {
+    background-position: 50px 25px
   }
 }
 </style>
