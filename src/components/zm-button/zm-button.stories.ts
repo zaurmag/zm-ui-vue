@@ -9,7 +9,8 @@ const meta = {
   argTypes: {
     size: { control: 'select', options: ['sm', 'lg'] },
     theme: { control: 'select', options: THEMES },
-    isAnimation: { control: 'boolean' },
+    animation: { control: 'boolean' },
+    outline: { control: 'boolean' },
   },
 } satisfies Meta<typeof ZmButton>
 
@@ -32,15 +33,16 @@ export const Default: Story = {
 
 export const Animation: Story = {
   args: {
-    // Для default слота
     default: 'Кнопка с анимацией',
     theme: 'primary',
-    isAnimation: true,
+    animation: true,
+  },
+}
 
-    // Для именованных слотов
-    // slots: {
-    //   header: '<h2>Заголовок</h2>',
-    //   footer: '<footer>Подвал</footer>',
-    // },
+export const Outline: Story = {
+  args: {
+    default: 'Кнопка с обводкой',
+    theme: 'primary',
+    outline: true,
   },
 }
