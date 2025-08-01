@@ -39,8 +39,8 @@
 </template>
 
 <script setup lang="ts">
-import Eye from '@/app/assets/icons/eye.svg'
-import EyeSlash from '@/app/assets/icons/eye-slash.svg'
+import Eye from '../../app/assets/icons/eye.svg'
+import EyeSlash from '../../app/assets/icons/eye-slash.svg'
 import { ref, useId, computed } from 'vue'
 
 // Types
@@ -109,7 +109,7 @@ const togglePassword = () => {
   grid-gap: 0.25rem;
 
   &__label {
-    color: $gray-900;
+    color: $input-label-color;
     font-size: $font-size-base;
     font-weight: 500;
     display: inline-block;
