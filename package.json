@@ -17,7 +17,8 @@
   },
   "exports": {
     ".": "./src/components/index.ts",
-    "./styles": "./src/app/assets/styles/main.scss"
+    "./functions": "./src/app/assets/styles/functions.scss",
+    "./variables": "./src/app/assets/styles/variables.scss"
   },
   "types": "./dist/index.d.ts",
   "files": [
@@ -28,7 +29,7 @@
     "vue": "^3.5.12"
   },
   "peerDependencies": {
-    "vite": "^5.4.8"
+    "vite": "^6.3.5"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.3",

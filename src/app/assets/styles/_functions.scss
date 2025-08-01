@@ -2,7 +2,7 @@
 @use "sass:map";
 @use 'sass:math';
 @use 'sass:color';
-@use './variables' as *;
+@use 'variables' as *;
 
 @function fz($value) {
   @return math.div($value, 16) * 1rem;

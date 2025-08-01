@@ -76,6 +76,9 @@ $border-radius-xl:  1rem !default;
 $border-radius-2xl: 2rem !default;
 
 // Input
+$input-label-color: $gray-900 !default;
+$input-placeholder-color: $gray-400 !default;
+$input-bg: $white !default;
 $input-border-width:   $border-width;
 $input-border-color:   $gray-400 !default;
 $input-disabled-color: null !default;
