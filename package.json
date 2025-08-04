@@ -43,7 +43,7 @@
     "@tsconfig/node20": "^20.1.4",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^20.16.11",
-    "@vitejs/plugin-vue": "^5.1.4",
+    "@vitejs/plugin-vue": "^5.2.4",
     "@vitest/eslint-plugin": "1.1.7",
     "@vue/eslint-config-prettier": "^10.0.0",
     "@vue/eslint-config-typescript": "^14.0.1",
@@ -62,9 +62,10 @@
     "start-server-and-test": "^2.0.8",
     "storybook": "^8.4.7",
     "typescript": "~5.5.4",
+    "vite-plugin-inspect": "^11.3.2",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-devtools": "^8.0.0",
-    "vite-plugin-inspect": "^11.3.2",
+    "vitest": "^3.2.4",
     "vue-tsc": "^2.1.6"
   },
   "eslintConfig": {
