@@ -19,7 +19,48 @@ describe('ZmButton', () => {
       slots: { default: 'I am a small button' }
     })
 
-    expect(wrapper.find('button').classes()).toContain('zm-button')
-    expect(wrapper.find('button').classes()).toContain('zm-button--sm')
+    expect(wrapper.find('.zm-button').classes()).toContain('zm-button--sm')
   })
+
+  it('render with a theme primary', () => {
+    const wrapper = mount(ZmButton, {
+      props: { theme: 'primary' },
+      slots: { default: 'I am a primary button' }
+    })
+
+    expect(wrapper.find('.zm-button').classes()).toContain('zm-button--primary')
+  })
+
+  it('render with an outline', () => {
+    const wrapper = mount(ZmButton, {
+      props: { theme: 'success', outline: true },
+      slots: { default: 'I am a outline button' }
+    })
+
+    expect(wrapper.find('.zm-button').classes()).toContain('zm-button--outline')
+  })
+
+  it('render with an animation', () => {
+    const wrapper = mount(ZmButton, {
+      props: { theme: 'success', animation: true },
+      slots: { default: 'I am a animation button' }
+    })
+
+    expect(wrapper.find('.zm-button').classes()).toContain('zm-button--animation')
+  })
+
+  it('emits a click event when clicked', async () => {
+    const wrapper = mount(ZmButton, {
+      slots: {
+        default: 'I am clickable button'
+      }
+    });
+
+    const button = wrapper.find('button');
+    await button.trigger('click');
+
+    expect(wrapper.emitted()).toHaveProperty('click');
+    expect(wrapper.emitted('click')).toHaveLength(1);
+  });
+
 })
