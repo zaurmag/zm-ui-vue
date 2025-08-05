@@ -61,6 +61,5 @@ describe('ZmButton', () => {
 
     expect(wrapper.emitted()).toHaveProperty('click');
     expect(wrapper.emitted('click')).toHaveLength(1);
-  });
-
+  })
 })
