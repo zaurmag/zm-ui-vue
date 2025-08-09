@@ -2,19 +2,15 @@ import { fileURLToPath, URL } from 'node:url'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import Inspect from 'vite-plugin-inspect'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
+const isStorybook = process.env.STORYBOOK === 'true'
 
 // https://vite.dev/config/
-export default defineConfig(({ command }) => {
-  const isStorybook = process.env.STORYBOOK === 'true'
-  const enableDevPlugins = command === 'serve' && !isStorybook
-
-  return {
+export default defineConfig({
     plugins: [
       vue(),
-      ...(enableDevPlugins ? [Inspect(), vueDevTools()] : []),
+      ...(!isStorybook ? [vueDevTools()] : []),
       createSvgIconsPlugin({
         // https://github.com/vbenjs/vite-plugin-svg-icons
         // Specify the icon folder to be cached
@@ -46,4 +42,4 @@ export default defineConfig(({ command }) => {
       },
     },
   }
-})
+)
