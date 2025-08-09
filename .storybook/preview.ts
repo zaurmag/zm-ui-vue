@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/vue3'
+import type { Preview } from '@storybook/vue3-vite'
 import { StyleDecorator } from '../src/app/config/storybook/style-decorator'
 import { IconsDecorator } from '../src/app/config/storybook/icons-decorator'
 
