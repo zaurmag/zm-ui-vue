@@ -2,7 +2,7 @@
 @use "sass:map";
 @use 'sass:math';
 @use 'sass:color';
-@use './variables' as *;
+@use 'variables' as *;
 
 @function fz($value) {
   @return math.div($value, 16) * 1rem;
@@ -52,8 +52,8 @@ $_luminance-list: .0008 .001 .0011 .0013 .0015 .0017 .002 .0022 .0025 .0027 .003
   @return (map.get($rgb, "r") * .2126) + (map.get($rgb, "g") * .7152) + (map.get($rgb, "b") * .0722);
 }
 
-@function opaque($background, $foreground) {
-  @return color.mix(rgba($foreground, 1), $background, color.opacity($foreground) * 100);
+@function opaque($background, $foreground, $alpha: 100%) {
+  @return color.mix(rgba($foreground, 1), $background, color.opacity($foreground) * $alpha);
 }
 
 @function divide($dividend, $divisor, $precision: 10) {
@@ -97,3 +97,10 @@ $_luminance-list: .0008 .001 .0011 .0013 .0015 .0017 .002 .0022 .0025 .0027 .003
   }
   @return $result;
 }
+
+// scss-docs-start color-functions
+// Tint a color: mix a color with white or black
+@function mix-color($initial-color, $bg-color, $weight) {
+  @return color.mix($bg-color, $initial-color, $weight, $method: rgb);
+}
+

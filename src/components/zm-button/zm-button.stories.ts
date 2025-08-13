@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { THEMES } from '@/shared/config'
 import ZmButton from './zm-button.vue'
 
@@ -9,6 +9,8 @@ const meta = {
   argTypes: {
     size: { control: 'select', options: ['sm', 'lg'] },
     theme: { control: 'select', options: THEMES },
+    animation: { control: 'boolean' },
+    outline: { control: 'boolean' },
   },
 } satisfies Meta<typeof ZmButton>
 
@@ -26,5 +28,21 @@ export const Default: Story = {
     //   header: '<h2>Заголовок</h2>',
     //   footer: '<footer>Подвал</footer>',
     // },
+  },
+}
+
+export const Animation: Story = {
+  args: {
+    default: 'Кнопка с анимацией',
+    theme: 'primary',
+    animation: true,
+  },
+}
+
+export const Outline: Story = {
+  args: {
+    default: 'Кнопка с обводкой',
+    theme: 'primary',
+    outline: true,
   },
 }

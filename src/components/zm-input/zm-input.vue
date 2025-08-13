@@ -4,8 +4,9 @@
       'zm-input',
       size ? `zm-input--${size}` : '',
       {
-        'is-disabled': isDisabled,
-        'zm-input--password': isPassword
+        'zm-input--disabled': isDisabled,
+        'zm-input--password': isPassword,
+        'zm-input--error': error
       },
     ]"
     :style="{ width }"
@@ -21,6 +22,7 @@
       :type="inputType"
       :placeholder="placeholder"
       :disabled="isDisabled"
+      @blur="$emit('blur', $event)"
     />
 
     <button
@@ -29,21 +31,24 @@
       class="zm-input__password-btn"
       @click="togglePassword"
     >
-      <svg-icon class="zm-input__password-btn-icon" :name="passwordBtnIcon" />
+      <img :src="passwordBtnIcon" alt="Eye">
     </button>
+
+    <span v-if="error" class="zm-input__error-message">{{ error }}</span>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, useId, defineAsyncComponent, computed } from 'vue'
+import Eye from '../../app/assets/icons/eye.svg'
+import EyeSlash from '../../app/assets/icons/eye-slash.svg'
+import { ref, useId, computed } from 'vue'
 
 // Types
 type Model = string | number
-type BtnIcon = 'eye' | 'eye-slash'
 type Type = 'text' | 'password' | 'email' | 'tel' | 'number'
 type Size = 'sm' | 'lg'
 
-interface IProps {
+export interface IProps {
   id?: string
   type?: Type | undefined
   label?: string | undefined
@@ -51,14 +56,13 @@ interface IProps {
   isDisabled?: boolean | undefined
   size?: Size | undefined
   placeholder?: string | undefined
+  error?: string | undefined
 }
 
 type Emits = {
   change: [value: Model]
+  blur: [event: Event]
 }
-
-// Components
-const svgIcon = defineAsyncComponent(() => import('@/shared/ui/svg-icon.vue'))
 
 // Emits and props
 const $emit = defineEmits<Emits>()
@@ -70,7 +74,7 @@ const generatedId: string = useId()
 // Refs
 const inputType = ref<Type>(type)
 const isDisplayPassword = ref(false)
-const passwordBtnIcon = ref<BtnIcon>('eye')
+const passwordBtnIcon = ref(Eye)
 
 const modelValue = defineModel<Model>({
   required: true,
@@ -89,10 +93,10 @@ const togglePassword = () => {
 
   if (isDisplayPassword.value) {
     inputType.value = 'text'
-    passwordBtnIcon.value = 'eye-slash'
+    passwordBtnIcon.value = EyeSlash
   } else {
     inputType.value = 'password'
-    passwordBtnIcon.value = 'eye'
+    passwordBtnIcon.value = Eye
   }
 }
 </script>
@@ -102,10 +106,10 @@ const togglePassword = () => {
   $self: &;
 
   display: grid;
-  grid-gap: 0.5rem;
+  grid-gap: 0.25rem;
 
   &__label {
-    color: $gray-900;
+    color: $input-label-color;
     font-size: $font-size-base;
     font-weight: 500;
     display: inline-block;
@@ -130,8 +134,20 @@ const togglePassword = () => {
     }
   }
 
+  // Error
+  &--error {
+    #{$self}__field {
+      border-color: $red;
+    }
+  }
+
+  &__error-message {
+    color: $red;
+    font-size: $font-size-sm;
+  }
+
   // Disabled
-  &.is-disabled {
+  &--disabled {
     #{$self}__field {
       opacity: 1;
       color: $input-disabled-color;
@@ -147,8 +163,8 @@ const togglePassword = () => {
   &__password-btn {
     position: absolute;
     right: $input-padding-x;
-    bottom: 0;
-    transform: translateY(calc(-1.5em / 4));
+    top: 0;
+    transform: translateY(calc(2.2em - 2px));
     background-color: transparent;
     cursor: pointer;
     border: none;
@@ -211,7 +227,7 @@ const togglePassword = () => {
       &__password-btn {
         font-size: $font-size-lg;
         right: $input-padding-x-lg;
-        transform: translateY(calc(-1.5em / 4 - 2px));
+        //transform: translateY(calc(2.4em - 2px));
       }
     }
   }
