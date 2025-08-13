@@ -33,9 +33,9 @@ export default defineConfig({
       preprocessorOptions: {
         scss: {
           additionalData: `
-          @use '/src/app/assets/styles/variables' as *;
-          @use '/src/app/assets/styles/functions' as *;
-          @use '/src/app/assets/styles/font' as *;
+          @use '/src/app/styles/variables' as *;
+          @use '/src/app/styles/functions' as *;
+          @use '/src/app/styles/font' as *;
           @use 'sass:color' as color;
         `,
         },

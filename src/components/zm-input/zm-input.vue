@@ -39,8 +39,8 @@
 </template>
 
 <script setup lang="ts">
-import Eye from '../../app/assets/icons/eye.svg'
-import EyeSlash from '../../app/assets/icons/eye-slash.svg'
+import Eye from '../../shared/assets/icons/eye.svg'
+import EyeSlash from '../../shared/assets/icons/eye-slash.svg'
 import { ref, useId, computed } from 'vue'
 
 // Types
