@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import zmInput from './components/zm-input/zm-input.vue'
+import zmInput from '@/ui/atoms/zm-input/zm-input.vue'
 
 const test = ref('')
 </script>

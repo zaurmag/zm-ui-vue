@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ZMThemes } from '../../shared/config/types'
+import type { ZMThemes } from '../../../shared/config'
 import { computed } from 'vue'
 
 export interface IProps {
