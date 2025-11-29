@@ -21,7 +21,8 @@ describe('ZmInput', () => {
 
     const input = wrapper.find('input')
     await input.setValue('test value')
-    expect(wrapper.emitted().change[0]).toEqual(['test value'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')![0]).toEqual(['test value'])
   })
 
   it('emits blur event', async () => {

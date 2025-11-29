@@ -6,7 +6,7 @@
       {
         'zm-input--disabled': isDisabled,
         'zm-input--password': isPassword,
-        'zm-input--error': error
+        'zm-input--error': error,
       },
     ]"
     :style="{ width }"
@@ -31,7 +31,7 @@
       class="zm-input__password-btn"
       @click="togglePassword"
     >
-      <img :src="passwordBtnIcon" alt="Eye">
+      <img :src="passwordBtnIcon" alt="Eye" />
     </button>
 
     <span v-if="error" class="zm-input__error-message">{{ error }}</span>
@@ -60,8 +60,7 @@ export interface IProps {
 }
 
 type Emits = {
-  change: [value: Model]
-  blur: [event: Event]
+  blur: [Event]
 }
 
 // Emits and props
@@ -78,11 +77,6 @@ const passwordBtnIcon = ref(Eye)
 
 const modelValue = defineModel<Model>({
   required: true,
-  set(value) {
-    $emit('change', value)
-
-    return value
-  },
 })
 
 const isPassword = computed<boolean>(() => type === 'password')
@@ -227,7 +221,6 @@ const togglePassword = () => {
       &__password-btn {
         font-size: $font-size-lg;
         right: $input-padding-x-lg;
-        //transform: translateY(calc(2.4em - 2px));
       }
     }
   }

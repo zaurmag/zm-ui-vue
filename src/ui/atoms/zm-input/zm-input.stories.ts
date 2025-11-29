@@ -11,6 +11,9 @@ const meta = {
     error: { control: 'text' },
     isDisabled: { control: 'boolean' },
     width: { control: 'text' },
+    // События
+    'onUpdate:modelValue': { action: 'update:modelValue' },
+    onBlur: { action: 'blur' },
   },
 } satisfies Meta<typeof ZmInput>
 
@@ -33,7 +36,7 @@ export const Small: Story = {
     type: 'text',
     label: 'Маленький размер',
     placeholder: 'sm',
-    size: 'sm'
+    size: 'sm',
   },
 }
 
@@ -43,7 +46,7 @@ export const Large: Story = {
     type: 'text',
     label: 'Большой размер',
     placeholder: 'lg',
-    size: 'lg'
+    size: 'lg',
   },
 }
 
@@ -60,7 +63,7 @@ export const WithoutLabel: Story = {
   args: {
     modelValue: '',
     type: 'text',
-    placeholder: 'Без заголовка'
+    placeholder: 'Без заголовка',
   },
 }
 
@@ -79,6 +82,6 @@ export const Error: Story = {
     modelValue: '',
     label: 'Поле с ошибкой',
     type: 'text',
-    error: 'Поле не должно быть пустым'
+    error: 'Поле не должно быть пустым',
   },
 }
