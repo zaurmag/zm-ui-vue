@@ -7,11 +7,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-const { prefix = 'icon', name = '' } = defineProps<{
+// Types
+interface Props {
   prefix?: string
   name: string
   color?: string
-}>()
+}
+
+const { prefix = 'icon', name = '' } = defineProps<Props>()
 
 const symbolId = computed<string>(() => `#${prefix}-${name}`)
 </script>
