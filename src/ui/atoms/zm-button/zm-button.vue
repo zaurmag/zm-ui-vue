@@ -2,7 +2,7 @@
 import type { ZMThemes } from '../../../shared/config'
 import { computed } from 'vue'
 
-export interface IProps {
+interface IProps {
   size?: 'sm' | 'lg'
   theme?: ZMThemes
   outline?: boolean
@@ -83,7 +83,11 @@ const classList = computed(() => {
       }
 
       &:hover {
-        $bg-color: if($color == dark, $color-contrast-light, $color-contrast-dark);
+        $bg-color: if(
+          $color == dark,
+          $color-contrast-light,
+          $color-contrast-dark
+        );
         background-color: mix-color($value, $bg-color, $btn-hover-bg-amount);
         border-color: mix-color($value, $bg-color, $btn-hover-bg-border-amount);
       }
@@ -94,14 +98,15 @@ const classList = computed(() => {
       animation: progress 0.7s linear infinite;
       background-size: 17px 17px;
       background-image: linear-gradient(
-          45deg,
-          rgba($value, 0.20) 20%,
-          transparent 25%,
-          transparent 50%,
-          rgba($value, 0.20) 50%,
-          rgba($value, 0.20) 70%,
-          transparent 80%,
-          transparent);
+        45deg,
+        rgba($value, 0.2) 20%,
+        transparent 25%,
+        transparent 50%,
+        rgba($value, 0.2) 50%,
+        rgba($value, 0.2) 70%,
+        transparent 80%,
+        transparent
+      );
       color: color-contrast($value);
     }
   }
@@ -136,11 +141,11 @@ const classList = computed(() => {
 
 @keyframes progress {
   from {
-    background-position: 0 0
+    background-position: 0 0;
   }
 
   to {
-    background-position: 17px 34px
+    background-position: 17px 34px;
   }
 }
 </style>

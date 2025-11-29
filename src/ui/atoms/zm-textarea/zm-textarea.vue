@@ -32,7 +32,7 @@
 import { useId } from 'vue'
 
 // Types
-export interface Props {
+interface Props {
   id?: string
   label?: string | undefined
   cols?: number

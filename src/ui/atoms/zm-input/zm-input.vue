@@ -39,16 +39,16 @@
 </template>
 
 <script setup lang="ts">
+import { ref, useId, computed } from 'vue'
 import Eye from '../../../shared/assets/icons/eye.svg'
 import EyeSlash from '../../../shared/assets/icons/eye-slash.svg'
-import { ref, useId, computed } from 'vue'
+import type { Size } from '../../../shared/config'
 
 // Types
 type Model = string | number
 type Type = 'text' | 'password' | 'email' | 'tel' | 'number'
-type Size = 'sm' | 'lg'
 
-export interface IProps {
+interface Props {
   id?: string
   type?: Type | undefined
   label?: string | undefined
@@ -65,7 +65,7 @@ type Emits = {
 
 // Emits and props
 const $emit = defineEmits<Emits>()
-const { type = 'text', width = '100%' } = defineProps<IProps>()
+const { type = 'text', width = '100%' } = defineProps<Props>()
 
 // Vars
 const generatedId: string = useId()

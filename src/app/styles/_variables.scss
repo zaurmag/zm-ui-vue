@@ -64,6 +64,9 @@ $theme-colors: (
 
 $link-color:     $primary !default;
 
+$component-active-color:      $white !default;
+$component-active-bg:         $primary !default;
+
 // ---- ** Border ** ----
 // Width
 $border-width:       1px !default;
@@ -104,6 +107,24 @@ $input-btn-line-height: 1.5 !default;
 $input-btn-padding-y-lg: .5rem !default;
 $input-btn-padding-x-lg: 1rem !default;
 $input-btn-font-size-lg: $font-size-lg !default;
+
+// Checkbox
+$checkbox-fz: $font-size-base !default;
+$checkbox-fz-lg: $font-size-lg * $line-height-lg !default;
+$checkbox-fz-sm: $font-size-sm * $line-height-sm !default;
+
+$checkbox-input-width: 1.2em !default;
+$checkbox-input-width-sm: 1em !default;
+$checkbox-input-width-lg: 1.5em !default;
+
+$checkbox-input-bg: $input-bg !default;
+$checkbox-input-border: 1px solid rgba($black, .25) !default;
+$checkbox-input-border-radius: .25em !default;
+
+$checkbox-checked-bg-color:       $component-active-bg !default;
+$checkbox-checked-border-color:   $checkbox-checked-bg-color !default;
+
+$checkbox-disabled-opacity: .5 !default;
 
 // Button
 $btn-link-color:      $link-color !default;
