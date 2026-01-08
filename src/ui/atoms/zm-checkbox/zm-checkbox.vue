@@ -87,10 +87,7 @@ const classList = computed(() => {
     &:checked {
       background-color: $checkbox-checked-bg-color;
       border-color: $checkbox-checked-border-color;
-
-      &[type='checkbox'] {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
-      }
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
     }
   }
 
@@ -121,5 +118,22 @@ const classList = computed(() => {
   }
 
   // Switch
+  &--switch {
+    padding-left: $switch-padding-start;
+
+    #{$self}__field {
+      width: $switch-width;
+      margin-left: $switch-padding-start * -1;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+      background-position: left center;
+      border-radius: $switch-border-radius;
+      transition: $switch-transition;
+
+      &:checked {
+        background-position: right center;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+      }
+    }
+  }
 }
 </style>
