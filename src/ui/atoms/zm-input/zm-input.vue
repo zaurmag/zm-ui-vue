@@ -48,7 +48,7 @@ import type { Size } from '../../../shared/config'
 type Model = string | number
 type Type = 'text' | 'password' | 'email' | 'tel' | 'number'
 
-interface Props {
+type Props = {
   id?: string
   type?: Type | undefined
   label?: string | undefined
