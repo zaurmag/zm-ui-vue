@@ -1,21 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import zmInput from '@/ui/atoms/zm-input/zm-input.vue'
+import zmSwitch from '@/ui/atoms/zm-switch/zm-switch.vue'
 
-const test = ref('')
+const switchValue = ref(false)
 </script>
 
 <template>
   <main class="main-container">
     <h1>ZM-UI - библиотека UI-компонентов</h1>
 
-    <zm-input
-      v-model="test"
-      label="Инпут с типом text"
-      placeholder="Альтернативный текст"
-      width="300px"
-      type="password"
-    />
+    <zm-switch v-model="switchValue" size="lg" label="Свитч" />
+    <p>Состояние: {{ switchValue }}</p>
   </main>
 </template>
 

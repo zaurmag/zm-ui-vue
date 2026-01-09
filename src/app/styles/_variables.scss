@@ -131,6 +131,18 @@ $switch-padding-start:            $switch-width + .5em !default;
 $switch-border-radius:            $switch-width !default;
 $switch-transition:               background-position .15s ease-in-out !default;
 
+// Switch
+$switch-fz:                     $font-size-base !default;
+$switch-fz-lg:                  $font-size-lg !default;
+$switch-fz-sm:                  $font-size-sm !default;
+
+$switch-inactive-color:         rgba($black, .25) !default;
+$switch-disabled-opacity:       .5 !default;
+
+$switch-input-border:           1px solid $switch-inactive-color !default;
+$switch-input-width:            2.6em !default;
+$switch-input-height:           1.23em !default;
+
 // Button
 $btn-link-color:      $link-color !default;
 $btn-padding-y:       $input-btn-padding-y !default;
